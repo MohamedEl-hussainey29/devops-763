@@ -1,4 +1,5 @@
 name: Deploy react
+
 on:
   push:
     branches:
@@ -12,4 +13,3 @@ jobs:
       - run: docker login -u ${{ secrets.DOCKER_USERNAME }} -p ${{ secrets.DOCKER_PASSWORD }}
       - run: docker build -t mowalid29/react-test -f dockerfile.dev .
       - run: docker run -e CI=true mowalid29/react-test npm run test
-
