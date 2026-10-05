@@ -4,14 +4,13 @@ on:
   push:
     branches:
       - master
+  workflow_dispatch: # Allows manual trigger from UI
 
 jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v4
       - run: docker login -u ${{ secrets.DOCKER_USERNAME }} -p ${{ secrets.DOCKER_PASSWORD }}
       - run: docker build -t mowalid29/react-test -f dockerfile.dev .
       - run: docker run -e CI=true mowalid29/react-test npm run test
-
-# trigger test
